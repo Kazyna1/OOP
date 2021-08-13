@@ -161,5 +161,28 @@ print('')
 some_lecturer > best_lector
 print('')
 
-# print('')
-# print(best_lector.grades_for_lecturer)
+def average_grade_hw(student_list, course):
+        total_grades = []
+        for student in student_list:
+            if course in student.courses_in_progress and student.grades.get(course) is not None:
+                total_grades += student.grades.get(course)
+        if sum(total_grades) != 0:
+            print(f'Общая средняя оценка за дз по {course} : {round(sum(total_grades) / len(total_grades), 1)}')
+        else:
+          print('Нет оценок')
+
+
+def average_grade_lecturer(lecturer_list, course):
+        total_grades = []
+        for lecturer in lecturer_list:
+            if course in lecturer.class_being_mentor and lecturer.grades_for_lecturer.get(course) is not None:
+                total_grades += lecturer.grades_for_lecturer.get(course)
+        if sum(total_grades) != 0:
+            print(f'Общая средняя оценка за лекции по {course} : {round(sum(total_grades) / len(total_grades), 1)}')
+        else:
+          print('Нет оценок')
+
+average_grade_hw([best_student, some_student],'Python')
+average_grade_hw([best_student, some_student],'Git')
+average_grade_lecturer([best_lector,some_lecturer],'Python')
+average_grade_lecturer([best_lector,some_lecturer],'Git')
